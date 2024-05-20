@@ -1,0 +1,8 @@
+0.7
+2020.2
+Nov 18 2020
+09:20:35
+/home/minseok/study/vivado/0520HW_uartLED/0520HW_uartLED.sim/sim_1/behav/xsim/glbl.v,1605673889,verilog,,,,glbl,,,,,,,,
+/home/minseok/study/vivado/0520HW_uartLED/0520HW_uartLED.srcs/sources_1/new/ledController.v,1716193932,verilog,,/home/minseok/study/vivado/0520HW_uartLED/0520HW_uartLED.srcs/sources_1/new/uart.v,,ledController,,,,,,,,
+/home/minseok/study/vivado/0520HW_uartLED/0520HW_uartLED.srcs/sources_1/new/top.v,1716197862,verilog,,,,top,,,,,,,,
+/home/minseok/study/vivado/0520HW_uartLED/0520HW_uartLED.srcs/sources_1/new/uart.v,1716191480,verilog,,/home/minseok/study/vivado/0520HW_uartLED/0520HW_uartLED.srcs/sources_1/new/top.v,,baudrate_generator;receiver;transmitter;uart,,,,,,,,
