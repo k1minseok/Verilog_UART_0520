@@ -15,12 +15,12 @@ module uart (
 
     wire w_br_tick;
     wire w_tx;
-    wire w_br_tick_test;
+    // wire w_br_tick_test;
 
 
     baudrate_generator #(
-        // .HERZ(9600)
-        .HERZ(10_000_000 / 16)
+        .HERZ(9600)
+        //.HERZ(10_000_000 / 16)
     ) U_BR_Gen (
         .clk  (clk),
         .reset(reset),
@@ -28,15 +28,15 @@ module uart (
         .br_tick(w_br_tick)
     );
 
-    baudrate_generator_test #(
-        // .HERZ(9600)
-        .HERZ(10_000_000 / 16)
-    ) U_BR_Gen_test (
-        .clk  (clk),
-        .reset(reset),
+    // baudrate_generator_test #(
+    //     // .HERZ(9600)
+    //     .HERZ(10_000_000 / 16)
+    // ) U_BR_Gen_test (
+    //     .clk  (clk),
+    //     .reset(reset),
 
-        .br_tick(w_br_tick_test)
-    );
+    //     .br_tick(w_br_tick_test)
+    // );
 
     transmitter U_TxD (
         .clk(clk),
@@ -53,7 +53,7 @@ module uart (
     receiver U_RxD (
         .clk(clk),
         .reset(reset),
-        .br_tick(w_br_tick_test),
+        .br_tick(w_br_tick),
         .rx(rx),
 
         .rx_data(rx_data),
@@ -101,53 +101,53 @@ module baudrate_generator #(
     end
 endmodule
 
-module baudrate_generator_test #(
-    parameter HERZ = 9600
-) (
-    input clk,
-    input reset,
+// module baudrate_generator_test #(
+//     parameter HERZ = 9600
+// ) (
+//     input clk,
+//     input reset,
 
-    output br_tick
-);
+//     output br_tick
+// );
 
-    // reg [$clog2(100_000_000/9600)-1:0] counter_reg, counter_next;
-    reg [$clog2(100_000_000/HERZ/16)-1:0] counter_reg, counter_next;
-    reg tick_reg, tick_next;
-    reg [3:0] clk_cnt = 0;
-    reg clk_cnt_reg;
+//     // reg [$clog2(100_000_000/9600)-1:0] counter_reg, counter_next;
+//     reg [$clog2(100_000_000/HERZ/16)-1:0] counter_reg, counter_next;
+//     reg tick_reg, tick_next;
+//     reg [3:0] clk_cnt = 0;
+//     reg clk_cnt_reg;
 
-    assign br_tick = tick_reg;
+//     assign br_tick = tick_reg;
 
-    always @(posedge clk, posedge reset) begin
-        if (reset) begin
-            counter_reg <= 0;
-            tick_reg <= 1'b0;
-            clk_cnt = 0;
-            clk_cnt_reg = 0;
-        end else begin
-            counter_reg <= counter_next;
-            tick_reg <= tick_next;
-            clk_cnt = clk_cnt + 1;
-            if(clk_cnt == 5) clk_cnt_reg = 1;
-        end
-    end
+//     always @(posedge clk, posedge reset) begin
+//         if (reset) begin
+//             counter_reg <= 0;
+//             tick_reg <= 1'b0;
+//             clk_cnt = 0;
+//             clk_cnt_reg = 0;
+//         end else begin
+//             counter_reg <= counter_next;
+//             tick_reg <= tick_next;
+//             clk_cnt = clk_cnt + 1;
+//             if(clk_cnt == 5) clk_cnt_reg = 1;
+//         end
+//     end
 
-    always @(*) begin
-        counter_next = counter_reg;
-        tick_next = tick_reg;
+//     always @(*) begin
+//         counter_next = counter_reg;
+//         tick_next = tick_reg;
 
-        if (clk_cnt_reg) begin
-            if (counter_reg == 100_000_000 / HERZ / 16 - 1) begin
-                // if (counter_reg == 3) begin     // simulation
-                counter_next = 0;
-                tick_next = 1'b1;
-            end else begin
-                counter_next = counter_reg + 1;
-                tick_next = 1'b0;
-            end
-        end
-    end
-endmodule
+//         if (clk_cnt_reg) begin
+//             if (counter_reg == 100_000_000 / HERZ / 16 - 1) begin
+//                 // if (counter_reg == 3) begin     // simulation
+//                 counter_next = 0;
+//                 tick_next = 1'b1;
+//             end else begin
+//                 counter_next = counter_reg + 1;
+//                 tick_next = 1'b0;
+//             end
+//         end
+//     end
+// endmodule
 
 
 module transmitter (
