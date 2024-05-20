@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Mon May 20 15:27:09 2024
+# Process ID: 420924
+# Current directory: /home/minseok/study/vivado/0520_UART/0520_UART.runs/synth_1
+# Command line: vivado -log top_txrx_loop.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top_txrx_loop.tcl
+# Log file: /home/minseok/study/vivado/0520_UART/0520_UART.runs/synth_1/top_txrx_loop.vds
+# Journal file: /home/minseok/study/vivado/0520_UART/0520_UART.runs/synth_1/vivado.jou
+#-----------------------------------------------------------
+source top_txrx_loop.tcl -notrace
