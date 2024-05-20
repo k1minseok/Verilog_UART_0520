@@ -223,7 +223,7 @@ module receiver (
     reg [1:0] state, state_next;
     reg [7:0] rx_data_reg, rx_data_next;
     reg rx_done_reg, rx_done_next;
-    reg [3:0]
+    reg [4:0]
         br_cnt_reg,
         br_cnt_next;  // baudrate 16 sampling 카운터 레지스터(0~15)
     reg [2:0]
@@ -300,7 +300,7 @@ module receiver (
 
             STOP: begin
                 if (br_tick) begin
-                    if (br_cnt_reg == 15) begin
+                    if (br_cnt_reg == 23) begin
                         br_cnt_next  = 0;
                         state_next   = IDLE;
                         rx_done_next = 1'b1;
